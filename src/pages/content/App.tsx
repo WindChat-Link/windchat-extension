@@ -2,6 +2,7 @@ import { throttle } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 import { useInitStorage, useInstanceList } from '../../utils/pstore';
 import { renderPreviewBlocks } from './components/renderPreviewBlocks';
+import { MODE } from './config';
 import { isGroupActive } from './initLoad';
 import { hasClass } from './utils';
 import { previewBlockAddedClass } from './utils/appendCodeBlocks';
@@ -10,23 +11,14 @@ import { removeAvatar } from './utils/removeAvatar';
 import { removeThumbs } from './utils/removeThumbs';
 import { setChatBlockStyle } from './utils/setChatBlockStyle';
 import { setContainerFlex } from './utils/setContainerFlex';
-import { Mode } from './config';
 
 
 export default function App() {
   const storageInited = useInitStorage();
   const mainObRef = useRef<any>();
   const sidebarObRef = useRef<any>();
-  const countRef = useRef<any>(0);
-  const mainHandlerRef = useRef<any>();
-  const sidebarHandlerRef = useRef<any>();
-  const pathname = window.location.pathname;
-  console.log('\n\n%c--------- pathname ---------', 'background:yellow; color:blue; font-weight:600;');
-  console.log('pathname', pathname);
 
-  const [insList, setInsList] = useInstanceList()
-
-  const [mode, setMode] = useState<any>(Mode.react);
+  const [mode, setMode] = useState<any>(MODE.react);
   const lastTimerRef = useRef<any>();
   const previewBlocksInited = useRef<boolean>();
   const lastChatTimerRef = useRef<any>();
@@ -91,7 +83,7 @@ export default function App() {
     const isCodeChange = mutationsList.find(e =>
       hasClass(e.target, 'hljs') || hasClass(e.target.parentNode, 'markdown')
     )
-    console.log('isCodeChange', isCodeChange);
+
     if (isCodeChange) {
       appendCodeLastChat(mode)
       if (lastTimerRef.current) {
@@ -106,8 +98,6 @@ export default function App() {
   }
 
   function mainHandler(mutationsList) {
-    // console.log('\n\n%c--------- mainHandler ---------', 'background:yellow; color:blue; font-weight:600;');
-    // console.log('mutationsList', mutationsList);
     setTimeout(() => {
       initAll(mutationsList)
     }, 1000);
@@ -132,7 +122,6 @@ export default function App() {
   }
 
   function observeMain() {
-    console.log('\n\n%c--------- observeMain ---------', 'background:yellow; color:blue; font-weight:600;');
     observeOne({
       handler: mainHandler,
       obRef: mainObRef,

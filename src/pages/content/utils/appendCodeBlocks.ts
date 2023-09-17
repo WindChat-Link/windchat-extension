@@ -4,7 +4,7 @@ import { addStyle, hasClass } from '../utils';
 import { appendFrame } from './appendFrame';
 import { groupFindBlocksClassName } from '../components/renderPreviewBlocks';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
-import { Mode } from '../config';
+import { MODE } from '../config';
 
 /** 
  * Code Block
@@ -19,7 +19,7 @@ export const codeBlockStyles = {
   marginTop: '1.5rem',
 };
 
-export async function appendCodeBlocks(mode = Mode.tailwind) {
+export async function appendCodeBlocks(mode = MODE.tailwind) {
   log('\n\n%c--------- appendCodeBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
 
   let groups = Array.from(getGroups()).reverse();
@@ -76,7 +76,7 @@ export async function appendCodeBlocks(mode = Mode.tailwind) {
           const codeList = getCodeListOfBlock(block, mode);
           let hasCode = false;
 
-          if (mode === Mode.tailwind) {
+          if (mode === MODE.tailwind) {
             for (const code of codeList) {
               const codeBlock = document.createElement('code');
 

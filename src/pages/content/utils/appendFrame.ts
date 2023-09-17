@@ -1,4 +1,4 @@
-import { commentOutImports } from '../commentOutImports';
+import { commentOutImports } from './commentOutImports';
 import { REACT_EDIT_PATH, REACT_PREVIEW_PATH } from '../config';
 import { hashCode } from './urlHash';
 

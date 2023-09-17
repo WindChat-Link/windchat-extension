@@ -1,12 +1,12 @@
 import RenderIfVisible from 'react-render-if-visible';
 import { cn } from '../../../../utils/cn';
-import { Mode, lazyRenderMax } from '../config';
+import { MODE, lazyRenderMax } from '../config';
 import { CodeBlock } from './CodeBlock';
 
 const ESTIMATED_ITEM_HEIGHT = 600;
 
 export default function PreviewBlock({ groupIndex, codeList, className = '', children = null, }) {
-  const mode = Mode.react;
+  const mode = MODE.tailwind;
 
   return <div
     className={cn(`h-full w-full`,)}

@@ -1,13 +1,13 @@
-import { Mode, reactLanguages } from '../config';
+import { MODE, reactLanguages } from '../config';
 
-export function getCodeListOfBlock(block, mode = Mode.tailwind) {
+export function getCodeListOfBlock(block, mode = MODE.tailwind) {
   let codeTextList = [];
 
   const preList = block.getElementsByTagName('pre');
 
   for (let index = 0; index < preList.length; index++) {
     const pre = preList[index];
-    if (mode === Mode.react) {
+    if (mode === MODE.react) {
       const langEle = pre.querySelector('.bg-gray-800>span')
       const lang = (langEle.textContent || '').toLowerCase()
 

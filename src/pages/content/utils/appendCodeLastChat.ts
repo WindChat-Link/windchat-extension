@@ -4,10 +4,10 @@ import { codeBlockClass, codeBlockStyles } from './appendCodeBlocks';
 import { appendFrame } from './appendFrame';
 import { groupFindBlocksClassName } from '../components/renderPreviewBlocks';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
-import { Mode } from '../config';
+import { MODE } from '../config';
 
 
-export async function appendCodeLastChat(mode = Mode.tailwind) {
+export async function appendCodeLastChat(mode = MODE.tailwind) {
 
   let groups = Array.from(getGroups()).reverse();
 
@@ -24,7 +24,7 @@ export async function appendCodeLastChat(mode = Mode.tailwind) {
     let hasCode = false;
     for (const code of codeList) {
       console.log('code', code);
-      if (mode === Mode.tailwind) {
+      if (mode === MODE.tailwind) {
         const codeBlock = document.createElement('code');
 
         addStyle(codeBlock, codeBlockStyles);

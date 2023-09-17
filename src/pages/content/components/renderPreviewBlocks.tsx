@@ -5,7 +5,7 @@ import { previewBlockAddedClass, codeBlockClass, codeBlockStyles } from '../util
 import { getGroups } from '../initLoad';
 import { appendFrame } from '../utils/appendFrame';
 import { getCodeListOfBlock } from '../utils/getCodeListOfBlock';
-import { Mode } from '../config';
+import { MODE } from '../config';
 
 /** 
  * Group
@@ -44,7 +44,7 @@ export const previewBlockStyle = {
   alignSelf: 'stretch',
 }
 
-export function renderPreviewBlocks({ mode = Mode.tailwind, last = false } = {}) {
+export function renderPreviewBlocks({ mode = MODE.tailwind, last = false } = {}) {
   console.log('\n\n%c--------- renderPreviewBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
 
   let chatGroups = Array.from(getGroups()).reverse();
@@ -76,7 +76,7 @@ export function renderPreviewBlocks({ mode = Mode.tailwind, last = false } = {})
 }
 
 
-export function renderOneGroup({ index, group, mode = Mode.tailwind, }) {
+export function renderOneGroup({ index, group, mode = MODE.tailwind, }) {
   addStyle(group, groupStyles);
 
   const previewCodeBlock = document.createElement('div');

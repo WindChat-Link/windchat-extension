@@ -1,5 +1,5 @@
 
-export const Mode = {
+export const MODE = {
   tailwind: 'tailwind',
   react: 'react'
 }

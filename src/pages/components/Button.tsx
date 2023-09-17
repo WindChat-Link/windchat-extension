@@ -35,7 +35,8 @@ export default function Button({ style = {}, disabled = false, type = '', classN
         disabled ? 'cursor-not-allowed' : '',
         'border-indigo-600',
         'bg-indigo-600 text-white',
-        'hover:bg-indigo-600 active:bg-indigo-700',
+        'hover:bg-indigo-600',
+        'active:bg-indigo-700',
         'rounded px-3',
       ];
       break;
@@ -44,7 +45,8 @@ export default function Button({ style = {}, disabled = false, type = '', classN
         ...commonClasses,
         disabled ? 'cursor-not-allowed' : '',
         'text-indigo-600',
-        'active:border-indigo-700 active:bg-gray-100 hover:border-indigo-600 hover:text-indigo-600',
+        'active:border-indigo-700 active:bg-gray-100',
+        'hover:border-indigo-600 hover:text-indigo-600',
         'rounded px-3',
       ];
       break;

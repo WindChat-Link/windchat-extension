@@ -3,7 +3,7 @@ import store from 'store';
 import { storageSet } from './chrome';
 import { useEffect } from 'react';
 import { getStorageWithDefault } from './storage';
-import { Mode } from '../pages/content/config';
+import { MODE } from '../pages/content/config';
 
 function getStorage(key, defaultValue) {
   const val = store.get(key);
@@ -32,7 +32,7 @@ export const PStore = new PullStateStore<IPStore>({
 
   licenseInfo: getStorage(PStoreKeys.licenseInfo, {}),
   instanceList: getStorage(PStoreKeys.instanceList, []),
-  mode: Mode.tailwind,
+  mode: MODE.tailwind,
 });
 
 

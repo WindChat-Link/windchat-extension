@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { cn } from '../../../../utils/cn';
-import { commentOutImports } from '../commentOutImports';
+import { commentOutImports } from '../utils/commentOutImports';
 import { REACT_PREVIEW_PATH, REACT_EDIT_PATH } from '../config';
 
 export default function CodeBlockReact({
