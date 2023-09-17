@@ -1,0 +1,18 @@
+.ant-menu-title-content {
+  display: none !important;
+}
+
+.ant-menu-item {
+  flex-grow: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.ant-switch,
+.ant-switch[aria-checked=false] {
+  background-color: rgba(86,88,105,1) !important;
+}
+
+.ant-switch[aria-checked=true] {
+  background-color: #4f46e5 !important;
+}

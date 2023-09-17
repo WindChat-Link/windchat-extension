@@ -1,0 +1,11 @@
+.ant-popconfirm-buttons {
+  flex-wrap: nowrap !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+.ant-popconfirm-buttons .ant-btn{
+  font-size: 12px !important;
+}
+.ant-popover-inner{
+  width:160px !important;
+}

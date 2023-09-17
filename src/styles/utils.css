@@ -1,0 +1,131 @@
+.ease {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.f {
+  display: flex;
+}
+
+.ac {
+  align-items: center;
+}
+
+.ae {
+  align-items: end;
+}
+
+.as {
+  align-items: start;
+}
+
+.jc {
+  justify-content: center;
+}
+
+.jb {
+  justify-content: space-between;
+}
+
+.js {
+  justify-content: start;
+}
+
+.je {
+  justify-content: end;
+}
+
+.fdc {
+  flex-direction: column;
+}
+
+.tc {
+  text-align: center;
+}
+
+.text-primary {
+  color: @primary-color;
+}
+
+.text-success {
+  color: @success-color;
+}
+
+.text-error {
+  color: @error-color;
+}
+
+.fs0 {
+  flex-shrink: 0;
+}
+
+.mxa {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nowrap {
+  whitespace: nowrap;
+}
+
+.prewrap,
+.preWrap {
+  whitespace: pre-wrap;
+}
+
+.cp,
+.pointer {
+  cursor: pointer;
+}
+
+.fdc {
+  flex-direction: column;
+}
+
+.fsb {
+  font-weight: 600;
+}
+
+.fb {
+  font-weight: 700;
+}
+
+.btn,
+.bt {
+  @apply transition-all 
+  border hover:border-indigo-600 active:border-indigo-700
+  hover:text-indigo-600 active:text-indigo-700
+  active:bg-gray-100 
+  rounded px-3 py-2;
+}
+
+.btp {
+  @apply transition-all 
+  border border-indigo-600 hover:border-indigo-500 active:border-indigo-600
+  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600
+  text-white 
+   rounded px-3 py-2;
+}
+
+.btps {
+  @apply transition-all cursor-pointer
+  border border-indigo-600 hover:border-indigo-500 active:border-indigo-700
+  text-indigo-600 hover:text-indigo-500 active:text-indigo-700 
+  active:bg-gray-100   rounded px-3 py-2;
+}
+
+.btd {
+  @apply transition-all text-white cursor-pointer
+  bg-red-500 hover:bg-red-400 active:bg-red-600 
+   rounded px-3 py-2;
+}
+
+.btds {
+  @apply transition-all cursor-pointer
+   border border-red-500 hover:border-red-400
+   text-red-500 hover:text-red-400 active:text-red-600 
+   active:bg-red-100 rounded px-3 py-2;
+}

@@ -1,0 +1,139 @@
+#windchat-extension {
+  display: block;
+}
+
+.f {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ac {
+  align-items: center;
+}
+
+.ae {
+  align-items: end;
+}
+
+.as {
+  align-items: start;
+}
+
+.jc {
+  justify-content: center;
+}
+
+.jb {
+  justify-content: space-between;
+}
+
+.js {
+  justify-content: start;
+}
+
+.je {
+  justify-content: end;
+}
+
+.fdc {
+  flex-direction: column;
+}
+
+.tc {
+  text-align: center;
+}
+
+.text-primary {
+  color: #1f9cdb !important;
+}
+
+.fs0 {
+  flex-shrink: 0;
+}
+
+.mxa {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nowrap {
+  whitespace: nowrap;
+}
+
+.cp,
+.pointer {
+  cursor: pointer;
+}
+
+.fdc {
+  flex-direction: column;
+}
+.fsb {
+  font-weight: 600;
+}
+.d1 {
+  transition-duration: 100ms;
+}
+
+.d2 {
+  transition-duration: 200ms;
+}
+
+.d3 {
+  transition-duration: 300ms;
+}
+
+.d4 {
+  transition-duration: 400ms;
+}
+
+.d5 {
+  transition-duration: 500ms;
+}
+
+.ease {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tra {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.trc {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.eio {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fw {
+  flex-wrap: wrap;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.mla {
+  margin-left: auto;
+}
+
+.preWrap,
+.prewrap {
+  white-space: pre-wrap;
+}
+.ell {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
