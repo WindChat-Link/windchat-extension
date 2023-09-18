@@ -9,7 +9,7 @@ export default function PreviewBlock({ groupIndex, codeList, className = '', chi
   const mode = MODE.tailwind;
 
   return <div
-    className={cn(`h-full w-full`,)}
+    className={cn(`min-h-[200px] max-h-[60vh] w-full`,)}
   >
     {
       codeList.map((code) => {

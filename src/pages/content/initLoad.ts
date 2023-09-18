@@ -1,13 +1,10 @@
-import { throttle, debounce } from '../../utils/lo';
+import { debounce, throttle } from '../../utils/lo';
 import { DEBUG_ALL_ENABLE } from './config';
-import { appendCodeBlocks } from './utils/appendCodeBlocks';
-import { renderPreviewBlocks } from './components/renderPreviewBlocks';
-import { appendSwitch } from './utils/appendSwitch';
-import { removeAvatar } from './utils/removeAvatar';
-import { removeThumbs } from './utils/removeThumbs';
-import { setChatBlockStyle } from './utils/setChatBlockStyle';
-import { setContainerFlex } from './utils/setContainerFlex';
-import { waitBlocks } from './utils/waitBlocks';
+import { appendSwitch } from './dom/appendSwitch';
+import { removeAvatar } from './dom/removeAvatar';
+import { removeThumbs } from './dom/removeThumbs';
+import { setContainerFlex } from './dom/setContainerFlex';
+import { waitBlocks } from './dom/waitBlocks';
 
 let activeGroupsMap = {};
 const DEBUG = false;
@@ -119,7 +116,6 @@ async function onBlocksLoaded() {
 
   // setChatBlockStyle();
   // appendPreviewBlock()
-  // appendCodeBlocks();
 }
 
 async function onLastChatChange() {
@@ -132,7 +128,6 @@ async function onLastChatChange() {
 
   // setChatBlockStyle();
   // appendPreviewBlock()
-  // appendCodeBlocks();
 
   setTimeout(() => {
     removeThumbs()

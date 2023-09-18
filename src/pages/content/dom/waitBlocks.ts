@@ -1,6 +1,7 @@
 import { log, isGroupActive } from '../initLoad';
 import { hasClass } from '../utils';
 
+// not used
 export function waitBlocks(
   loadedCallback = (...args) => { },
   lastChatCallback = (...args) => { },

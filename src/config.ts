@@ -16,4 +16,3 @@ export const SCOPES = [
   "https://www.googleapis.com/auth/userinfo.profile"
 ];
 
-export const maxItemsLimit = 20

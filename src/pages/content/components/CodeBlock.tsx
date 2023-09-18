@@ -6,24 +6,6 @@ import CodeBlockTailwind from './CodeBlockTailwind';
 import { PreviewBlockToolbar } from './PreviewBlockToolbar';
 
 export function CodeBlock({ mode, code }) {
-  // if (mode === Mode.tailwind) {
-  //   //   for (const code of codeList) {
-  //   //     const codeBlock = document.createElement('code');
-
-  //   //     addStyle(codeBlock, codeBlockStyles);
-
-  //   //     codeBlock.innerHTML = code;
-  //   //     previewCodeBlock.appendChild(codeBlock);
-  //   //     hasCode = true;
-  //   //   }
-  // } else {
-  //   //   for (const code of codeList) {
-  //   //     const frameBlock = appendFrame({ code })
-  //   //     hasCode = true;
-  //   //     previewCodeBlock.appendChild(frameBlock);
-  //   //   }
-  // }
-
   let code2 = commentOutImports(code)
   const hash = code ? hashCode(code2) : ''
 
