@@ -1,15 +1,14 @@
 import { throttle } from 'lodash';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useInitStorage } from '../../utils/pstore';
-import { renderPreviewBlocks } from './dom/renderPreviewBlocks';
-import { MODE } from './config';
-import { isGroupActive } from './initLoad';
-import { hasClass } from './utils';
 import { previewBlockAddedClass } from './dom/codeBlockConfig';
 import { removeAvatar } from './dom/removeAvatar';
 import { removeThumbs } from './dom/removeThumbs';
+import { renderPreviewBlocks } from './dom/renderPreviewBlocks';
 import { setChatBlockStyle } from './dom/setChatBlockStyle';
 import { setContainerFlex } from './dom/setContainerFlex';
+import { isGroupActive } from './initLoad';
+import { hasClass } from './utils';
 
 
 export default function App() {
