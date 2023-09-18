@@ -1,15 +1,17 @@
 import { cn } from '../../../../utils/cn';
 import Button from '../../components/Button';
-import { REACT_PREVIEW_PATH, REACT_EDIT_PATH, previewWidth } from '../config';
+import {
+  REACT_PREVIEW_PATH, REACT_EDIT_PATH, previewWidth, MODE, TAILWIND_PREVIEW_PATH
+} from '../config';
 import ModeSwitch from './ModeSwitch';
 
-export function PreviewBlockToolbar({ hash }) {
-  const previewPath = `${REACT_PREVIEW_PATH}#${hash}`
+export function PreviewBlockToolbar({ mode, hash }) {
+  const previewPath = mode === MODE.tailwind ? `${TAILWIND_PREVIEW_PATH}#${hash}` : `${REACT_PREVIEW_PATH}#${hash}`;
   const editPath = `${REACT_EDIT_PATH}#${hash}`
 
   return <div
     style={{ minWidth: previewWidth }}
-    className='overflpw-x-auto shadow bg-white rounded gap-4 py-2 flex items-center px-3 h-[40px] mb-1'>
+    className='overflpw-x-auto sticky top-0 shadow bg-white rounded gap-4 py-2 flex items-center px-3 h-[40px] mb-1'>
 
     <a href={previewPath} target="_blank"
       className={cn(`flex items-center`,)}

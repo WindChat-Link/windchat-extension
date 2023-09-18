@@ -1,11 +1,8 @@
-import { createRoot } from 'react-dom/client';
-import PreviewBlock from './PreviewBlock';
-import { hasClass, addStyle, addClass } from '../utils';
-import { previewBlockAddedClass, codeBlockClass, codeBlockStyles } from '../utils/appendCodeBlocks';
+import { MODE } from '../config';
 import { getGroups } from '../initLoad';
-import { appendFrame } from '../utils/appendFrame';
-import { getCodeListOfBlock } from '../utils/getCodeListOfBlock';
-import { Mode } from '../config';
+import { hasClass } from '../utils';
+import { previewBlockAddedClass } from './codeBlockConfig';
+import { renderOneGroup } from './renderOneGroup';
 
 /** 
  * Group
@@ -44,8 +41,9 @@ export const previewBlockStyle = {
   alignSelf: 'stretch',
 }
 
-export function renderPreviewBlocks({ mode = Mode.tailwind, last = false } = {}) {
+export function renderPreviewBlocks({ mode = MODE.tailwind, last = false } = {}) {
   console.log('\n\n%c--------- renderPreviewBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
+  console.log('last', last);
 
   let chatGroups = Array.from(getGroups()).reverse();
 
@@ -76,31 +74,4 @@ export function renderPreviewBlocks({ mode = Mode.tailwind, last = false } = {})
 }
 
 
-export function renderOneGroup({ index, group, mode = Mode.tailwind, }) {
-  addStyle(group, groupStyles);
 
-  const previewCodeBlock = document.createElement('div');
-  // 要先移除 model 提示 block
-  const modelUnavailableBlock = group.querySelector('div.text-center.text-xs')
-  if (modelUnavailableBlock) {
-    group.removeChild(modelUnavailableBlock)
-  }
-
-  const answerBlock = group.querySelector('div:first-child')
-  if (answerBlock) {
-    addStyle(answerBlock, answerBlockStyle)
-  }
-
-  addClass(previewCodeBlock, previewBlockAddedClass)
-  addClass(previewCodeBlock, previewToolbarClass)
-  addStyle(previewCodeBlock, previewBlockStyle)
-  addClass(previewCodeBlock, 'relative')
-
-  const codeList = getCodeListOfBlock(answerBlock, mode);
-
-  createRoot(previewCodeBlock).render(
-    <PreviewBlock groupIndex={index} codeList={codeList}></PreviewBlock>
-  );
-
-  group.append(previewCodeBlock);
-}

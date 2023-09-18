@@ -1,43 +1,29 @@
 import { throttle } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import { useInitStorage, useInstanceList } from '../../utils/pstore';
-import { renderPreviewBlocks } from './components/renderPreviewBlocks';
+import { useInitStorage } from '../../utils/pstore';
+import { renderPreviewBlocks } from './dom/renderPreviewBlocks';
+import { MODE } from './config';
 import { isGroupActive } from './initLoad';
 import { hasClass } from './utils';
-import { previewBlockAddedClass } from './utils/appendCodeBlocks';
-import { appendCodeLastChat } from './utils/appendCodeLastChat';
-import { removeAvatar } from './utils/removeAvatar';
-import { removeThumbs } from './utils/removeThumbs';
-import { setChatBlockStyle } from './utils/setChatBlockStyle';
-import { setContainerFlex } from './utils/setContainerFlex';
-import { Mode } from './config';
+import { previewBlockAddedClass } from './dom/codeBlockConfig';
+import { removeAvatar } from './dom/removeAvatar';
+import { removeThumbs } from './dom/removeThumbs';
+import { setChatBlockStyle } from './dom/setChatBlockStyle';
+import { setContainerFlex } from './dom/setContainerFlex';
 
 
 export default function App() {
   const storageInited = useInitStorage();
   const mainObRef = useRef<any>();
   const sidebarObRef = useRef<any>();
-  const countRef = useRef<any>(0);
-  const mainHandlerRef = useRef<any>();
-  const sidebarHandlerRef = useRef<any>();
-  const pathname = window.location.pathname;
-  console.log('\n\n%c--------- pathname ---------', 'background:yellow; color:blue; font-weight:600;');
-  console.log('pathname', pathname);
 
-  const [insList, setInsList] = useInstanceList()
-
-  const [mode, setMode] = useState<any>(Mode.react);
-  const lastTimerRef = useRef<any>();
-  const previewBlocksInited = useRef<boolean>();
-  const lastChatTimerRef = useRef<any>();
-
-  const lastChatHandler2 = throttle(() => lastChatHandler0(), 500, { trailing: true, leading: true })
+  const lastChatHandler = throttle(() => lastChatHandler0(), 500, { trailing: true, leading: true })
 
   function observeAll() {
     const observer = new MutationObserver(async (mutationsList, observer) => {
       mutationsList.forEach(async (mutation) => {
 
-        console.log('mutationsList', mutationsList);
+        // console.log('mutationsList', mutationsList);
         const target = mutation.target as HTMLElement;
         const type = mutation.type;
         const tagName = target.tagName;
@@ -46,7 +32,7 @@ export default function App() {
         if (hasClass(target, 'hljs') ||
           hasClass(target, 'xml') ||
           hasClass(target, 'hljs-tag')) {
-          lastChatHandler2()
+          lastChatHandler()
         }
       })
 
@@ -55,6 +41,9 @@ export default function App() {
   }
 
   function lastChatHandler0() {
+    removeAvatar();
+    removeThumbs();
+
     setChatBlockStyle();
     renderPreviewBlocks({ last: true })
   }
@@ -71,7 +60,6 @@ export default function App() {
 
   function initAll(mutationsList) {
     const loaded = checkPreviewBlockInited()
-    console.log('loaded', loaded);
     if (!loaded) {
       removeAvatar();
       removeThumbs();
@@ -81,33 +69,9 @@ export default function App() {
       renderPreviewBlocks()
     }
 
-    // lastChatHandler(mutationsList)
-  }
-
-  function lastChatHandler(mutationsList) {
-    /** 
-    * 最后一个 chat
-    */
-    const isCodeChange = mutationsList.find(e =>
-      hasClass(e.target, 'hljs') || hasClass(e.target.parentNode, 'markdown')
-    )
-    console.log('isCodeChange', isCodeChange);
-    if (isCodeChange) {
-      appendCodeLastChat(mode)
-      if (lastTimerRef.current) {
-        clearTimeout(lastTimerRef.current)
-        lastTimerRef.current = null;
-      }
-      lastTimerRef.current = setTimeout(() => {
-        appendCodeLastChat(mode)
-        lastTimerRef.current = 0
-      }, 1000);
-    }
   }
 
   function mainHandler(mutationsList) {
-    // console.log('\n\n%c--------- mainHandler ---------', 'background:yellow; color:blue; font-weight:600;');
-    // console.log('mutationsList', mutationsList);
     setTimeout(() => {
       initAll(mutationsList)
     }, 1000);
@@ -132,7 +96,6 @@ export default function App() {
   }
 
   function observeMain() {
-    console.log('\n\n%c--------- observeMain ---------', 'background:yellow; color:blue; font-weight:600;');
     observeOne({
       handler: mainHandler,
       obRef: mainObRef,
