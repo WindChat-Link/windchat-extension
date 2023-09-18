@@ -28,7 +28,7 @@ export const iframeBlockClass = 'thp-iframe-block';
 export const previewToolbarClass = 'thp-preview-toolbar';
 
 export const answerBlockStyle = {
-  marginRight: 0,
+  marginRight: '0',
   marginLeft: '0',
 }
 
