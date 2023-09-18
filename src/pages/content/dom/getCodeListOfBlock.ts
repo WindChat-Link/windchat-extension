@@ -1,4 +1,4 @@
-import { MODE, reactLanguages } from '../config';
+import { MODE } from '../config';
 
 
 export function detectCodeLanguage() {
@@ -14,9 +14,6 @@ export function getCodeListOfBlock(block, mode = MODE.tailwind) {
 
   for (let index = 0; index < preList.length; index++) {
     const pre = preList[index];
-    const langEle = pre.querySelector('.bg-gray-800>span')
-    const language = (langEle.textContent || '').toLowerCase()
-
     const codeElements = pre.getElementsByTagName('code');
 
     for (const ele of codeElements) {

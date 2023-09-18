@@ -9,6 +9,7 @@ import { setChatBlockStyle } from './dom/setChatBlockStyle';
 import { setContainerFlex } from './dom/setContainerFlex';
 import { isGroupActive } from './initLoad';
 import { hasClass } from './utils';
+import { appendSwitch } from './dom/appendSwitch';
 
 
 export default function App() {
@@ -66,6 +67,7 @@ export default function App() {
       setChatBlockStyle();
 
       renderPreviewBlocks()
+      appendSwitch()
     }
 
   }
