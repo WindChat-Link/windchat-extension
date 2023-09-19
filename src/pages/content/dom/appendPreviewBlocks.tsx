@@ -2,7 +2,7 @@ import { MODE } from '../config';
 import { getGroups } from '../initLoad';
 import { hasClass } from '../utils';
 import { previewBlockAddedClass } from './codeBlockConfig';
-import { renderOneGroup } from './renderOneGroup';
+import { appendOneGroup } from './appendOneGroup';
 
 /** 
  * Group
@@ -41,7 +41,7 @@ export const previewBlockStyle = {
   alignSelf: 'stretch',
 }
 
-export function renderPreviewBlocks({ mode = MODE.tailwind, last = false } = {}) {
+export function appendPreviewBlocks({ mode = MODE.tailwind, last = false } = {}) {
   console.log('\n\n%c--------- renderPreviewBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
   console.log('last', last);
 
@@ -66,7 +66,7 @@ export function renderPreviewBlocks({ mode = MODE.tailwind, last = false } = {})
       }
     }
 
-    renderOneGroup({
+    appendOneGroup({
       index,
       group, mode,
     })

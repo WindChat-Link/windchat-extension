@@ -36,5 +36,5 @@ export function getCodeListOfBlock(block, mode = MODE.tailwind) {
 
   console.log('blockCodeList', blockCodeList);
 
-  return codeTextList;
+  return blockCodeList;
 }

@@ -4,7 +4,7 @@ import { useInitStorage } from '../../utils/pstore';
 import { previewBlockAddedClass } from './dom/codeBlockConfig';
 import { removeAvatar } from './dom/removeAvatar';
 import { removeThumbs } from './dom/removeThumbs';
-import { renderPreviewBlocks } from './dom/renderPreviewBlocks';
+import { appendPreviewBlocks } from './dom/appendPreviewBlocks';
 import { setChatBlockStyle } from './dom/setChatBlockStyle';
 import { setContainerFlex } from './dom/setContainerFlex';
 import { isGroupActive } from './initLoad';
@@ -45,7 +45,7 @@ export default function App() {
     removeThumbs();
 
     setChatBlockStyle();
-    renderPreviewBlocks({ last: true })
+    appendPreviewBlocks({ last: true })
   }
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function App() {
       setContainerFlex();
       setChatBlockStyle();
 
-      renderPreviewBlocks()
+      appendPreviewBlocks()
       appendSwitch()
     }
 
