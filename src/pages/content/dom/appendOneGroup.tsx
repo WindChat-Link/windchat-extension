@@ -4,11 +4,9 @@ import { MODE } from '../config';
 import { addClass, addStyle } from '../utils';
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
-import { answerBlockStyle, groupStyles, previewBlockStyle, previewToolbarClass } from './renderPreviewBlocks';
+import { answerBlockStyle, groupStyles, previewBlockStyle, previewToolbarClass } from './appendPreviewBlocks';
 
-
-
-export function renderOneGroup({ index, group, mode = MODE.tailwind, }) {
+export function appendOneGroup({ index, group, mode = MODE.tailwind, }) {
   console.log('\n\n%c--------- renderOneGroup ---------', 'background:yellow; color:blue; font-weight:600;');
 
   addStyle(group, groupStyles);
