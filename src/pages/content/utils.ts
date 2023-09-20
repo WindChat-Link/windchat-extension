@@ -1,7 +1,20 @@
 
 export function hasClass(element, name) {
-  const list = Array.from(element.classList);
-  return list.includes(name)
+  if (name.indexOf(' ') > -1) {
+    name = name.split(/\s+/)
+  }
+
+  if (typeof name === 'string') {
+    const list = Array.from(element.classList);
+    return list.includes(name)
+  } else {
+    for (const item of name) {
+      if (!element.classList.contains(item)) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 
