@@ -1,9 +1,6 @@
 
-import React from 'react';
-import { useState, useEffect } from 'react';
 import { cn } from '../../../../utils/cn';
-import { commentOutImports } from '../utils/commentOutImports';
-import { REACT_PREVIEW_PATH, REACT_EDIT_PATH } from '../config';
+import { REACT_EDIT_PATH, REACT_PREVIEW_PATH } from '../config';
 
 export default function CodeBlockReact({
   hash, className = '', children = null,

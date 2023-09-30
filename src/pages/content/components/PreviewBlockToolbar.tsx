@@ -1,11 +1,15 @@
 import { cn } from '../../../../utils/cn';
 import Button from '../../components/Button';
 import {
-  REACT_PREVIEW_PATH, REACT_EDIT_PATH, previewWidth, MODE, TAILWIND_PREVIEW_PATH
+  MODE,
+  REACT_EDIT_PATH,
+  REACT_PREVIEW_PATH,
+  TAILWIND_PREVIEW_PATH,
+  previewWidth
 } from '../config';
 import ModeSwitch from './ModeSwitch';
 
-export function PreviewBlockToolbar({ mode, hash }) {
+export function PreviewBlockToolbar({ mode, setMode, hash }) {
   const previewPath = mode === MODE.tailwind ? `${TAILWIND_PREVIEW_PATH}#${hash}` : `${REACT_PREVIEW_PATH}#${hash}`;
   const editPath = `${REACT_EDIT_PATH}#${hash}`
 
@@ -36,7 +40,10 @@ export function PreviewBlockToolbar({ mode, hash }) {
       </Button>
     </a>
 
-    <ModeSwitch></ModeSwitch>
+    <ModeSwitch
+      mode={mode}
+      setMode={setMode}
+    ></ModeSwitch>
 
   </div>;
 }

@@ -4,13 +4,18 @@ import { hashCode } from '../utils/urlHash';
 import CodeBlockReact from './CodeBlockReact';
 import CodeBlockTailwind from './CodeBlockTailwind';
 import { PreviewBlockToolbar } from './PreviewBlockToolbar';
+import { getModeFromLanguage } from './PreviewBlock';
+import { useState } from 'react';
 
-export function CodeBlock({ mode, code }) {
+export function CodeBlock({ language, code }) {
   let code2 = commentOutImports(code)
   const hash = code ? hashCode(code2) : ''
+  const initMode = getModeFromLanguage(language)
+  const [mode, setMode] = useState<any>(initMode);
 
   return <div className='h-full flex flex-col justify-stretch'>
     <PreviewBlockToolbar
+      setMode={setMode}
       mode={mode}
       hash={hash}
     ></PreviewBlockToolbar>

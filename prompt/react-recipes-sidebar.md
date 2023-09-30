@@ -8,7 +8,6 @@ use react-icons.
 use hooks if necessary. use tailwindcss ui to set styles.
 use img tag and picsum.photos src if you need images.
 use img tag, DO NOT use backgroundImage url.
-use mui components lib
 use demo data always;
 use this template:
 use img tag and picsum.photos src if you need images, don't use any svg tag,

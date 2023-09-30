@@ -1,6 +1,4 @@
-import { log } from '../initLoad';
 import { addStyle, hasClass } from '../utils';
-
 
 /** 
  * Chat Block
@@ -12,7 +10,6 @@ export const chatBlockClass = 'thp-chat-block';
 export const chatBlockStyle = {
   marginLeft: '10px',
   width: '660px',
-  // minWidth: '500px'
 }
 
 export const chatBlockInnerClass = 'relative';
@@ -26,8 +23,6 @@ export function getChatBlocks() {
 }
 
 export function setChatBlockStyle() {
-  log('\n\n%c--------- setChatBlockStyle ---------', 'background:yellow; color:blue; font-weight:600;');
-
   const chatBlocks = getChatBlocks();
 
   for (const block of chatBlocks) {

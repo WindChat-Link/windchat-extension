@@ -2,15 +2,11 @@ import { createRoot } from 'react-dom/client';
 import PreviewBlock from '../components/PreviewBlock';
 import { MODE } from '../config';
 import { addClass, addStyle } from '../utils';
+import { answerBlockStyle, groupStyles, previewBlockStyle, previewToolbarClass } from './appendPreviewBlocks';
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
-import { answerBlockStyle, groupStyles, previewBlockStyle, previewToolbarClass } from './renderPreviewBlocks';
 
-
-
-export function renderOneGroup({ index, group, mode = MODE.tailwind, }) {
-  console.log('\n\n%c--------- renderOneGroup ---------', 'background:yellow; color:blue; font-weight:600;');
-
+export function updateLastGroupCodeList({ index, group, mode = MODE.tailwind, }) {
   addStyle(group, groupStyles);
 
   const previewCodeBlock = document.createElement('div');

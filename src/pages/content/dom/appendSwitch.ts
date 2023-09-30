@@ -1,7 +1,13 @@
-import { switchLabelClass, log, isGroupActive, getGroupId, setActiveGroupId, loadAll, isVip } from '../initLoad';
-import { hasClass, addStyle } from '../utils';
+import { throttle } from 'lodash';
+import { addStyle, hasClass } from '../utils';
+import { applyChatGroupsChanges, groupsHandler } from './observeAll';
+import { isGroupActive, getGroupId, setActiveGroupId, log } from './isGroupActive';
+import { isVip } from './isVip';
 
-
+/** 
+ * Switch
+ */
+export const switchLabelClass = 'thp-switch-label'
 
 export function checkButtonAppended() {
   const switchEle = document.querySelector(`.${switchLabelClass}`);
@@ -9,12 +15,13 @@ export function checkButtonAppended() {
   return !!switchEle
 }
 
-export function appendSwitch() {
-  log('\n\n%c--------- appendSwitch ---------', 'background:yellow; color:blue; font-weight:600;');
-
-  const did = checkButtonAppended()
-  if (did) {
-    // switchEle.remove();
+/** 
+ * comment: 如果不进行 throttle，会导致加载两个开关
+ */
+export const appendSwitch = throttle(() => appendSwitch0(), 500, { trailing: true, leading: true });
+function appendSwitch0() {
+  const switchAppended = checkButtonAppended()
+  if (switchAppended) {
     return;
   }
 
@@ -22,13 +29,9 @@ export function appendSwitch() {
   const beforeNode = reGenerateButtonParant?.parentNode?.parentNode;
   const parent = beforeNode?.parentNode;
 
-
   // recommand: flex flex-col gap-3
   const recommands = parent?.childNodes || [];
   const lastRecommand = recommands[recommands?.length - 1]
-  log('\n\n%c--------- recommands ---------', 'background:yellow; color:blue; font-weight:600;');
-  log('recommands?.length', recommands?.length);
-  log('lastRecommand', lastRecommand);
 
   if (lastRecommand
     && hasClass(lastRecommand, 'flex')
@@ -46,9 +49,6 @@ export function appendSwitch() {
 }
 
 export async function createSwitch(parent, beforeNode) {
-  log('\n\n%c--------- createSwitch ---------', 'background:yellow; color:blue; font-weight:600;');
-
-  // create the label element
   const label = document.createElement('label');
   label.setAttribute('for', 'toggle');
   label.classList.add(switchLabelClass);
@@ -126,6 +126,7 @@ export async function createSwitch(parent, beforeNode) {
     if (active) {
       addStyle(dot, { transform: 'translateX(100%)' });
       addStyle(background, { background: '#4f46e5' });
+      groupsHandler();
     } else {
       addStyle(dot, { transform: 'translateX(0)' });
       addStyle(background, { background: 'rgba(86,88,105,1)' });
@@ -137,10 +138,7 @@ export async function createSwitch(parent, beforeNode) {
   setSwitchState(active);
 
   label.addEventListener('click', () => {
-    log('\n\n%c--------- click ---------', 'background:yellow; color:blue; font-weight:600;');
-
     const newChecked = !checkbox.checked;
-    log('newChecked', newChecked);
 
     setSwitchState(newChecked);
 
@@ -148,7 +146,7 @@ export async function createSwitch(parent, beforeNode) {
       const id = getGroupId();
       if (newChecked) {
         setActiveGroupId(id, true);
-        loadAll();
+        applyChatGroupsChanges();
       } else {
         setActiveGroupId(id, false);
         window.location.reload();

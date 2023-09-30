@@ -1,8 +1,17 @@
 import { MODE } from '../config';
-import { getGroups } from '../initLoad';
 import { hasClass } from '../utils';
+import { appendOneGroup } from './appendOneGroup';
 import { previewBlockAddedClass } from './codeBlockConfig';
-import { renderOneGroup } from './renderOneGroup';
+
+/** 
+ * Group
+ */
+const answerGroupsSelector = '.group.w-full.bg-gray-50';
+
+export function getGroups() {
+  const chatGroups = document.querySelectorAll(answerGroupsSelector) as NodeListOf<HTMLElement>;
+  return chatGroups;
+}
 
 /** 
  * Group
@@ -41,32 +50,20 @@ export const previewBlockStyle = {
   alignSelf: 'stretch',
 }
 
-export function renderPreviewBlocks({ mode = MODE.tailwind, last = false } = {}) {
-  console.log('\n\n%c--------- renderPreviewBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
-  console.log('last', last);
+export function appendPreviewBlocks({ mode = MODE.tailwind } = {}) {
+  console.log('\n\n%c--------- appendPreviewBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
 
-  let chatGroups = Array.from(getGroups()).reverse();
-
-  if (last) {
-    chatGroups = chatGroups.slice(0, 1)
-  }
+  let chatGroups = Array.from(getGroups())
 
   for (let index = 0; index < chatGroups.length; index++) {
     const group = chatGroups[index];
     const groupLoaded = hasClass(group, previewBlockAddedClass)
 
-    if (last) {
-      const existPreviewBlock = group.querySelector(`.${previewBlockAddedClass}`)
-      if (existPreviewBlock) {
-        group.removeChild(existPreviewBlock);
-      }
-    } else {
-      if (groupLoaded) {
-        continue;
-      }
+    if (groupLoaded) {
+      continue;
     }
 
-    renderOneGroup({
+    appendOneGroup({
       index,
       group, mode,
     })

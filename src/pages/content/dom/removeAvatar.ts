@@ -1,11 +1,13 @@
-import { log, avatarSelector, avatarSelectorAdded } from '../initLoad';
 import { addClass, addStyle, hasClass } from '../utils';
 
-export function removeAvatar() {
-  log('\n\n%c--------- removeAvatar ---------', 'background:yellow; color:blue; font-weight:600;');
+/** 
+ * Avatar
+ */
+export const avatarSelector = '.flex.flex-col.relative.items-end'
+export const avatarSelectorAdded = 'avatarSelectorAdded'
 
+export function removeAvatar() {
   const eles = document.querySelectorAll(avatarSelector);
-  log('eles.length', eles.length);
 
   for (const ele of eles) {
     if (hasClass(ele, avatarSelectorAdded)) continue;
