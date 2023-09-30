@@ -11,11 +11,11 @@ export function CodeBlock({ language, code }) {
   let code2 = commentOutImports(code)
   const hash = code ? hashCode(code2) : ''
   const initMode = getModeFromLanguage(language)
-  console.log('initMode', initMode);
   const [mode, setMode] = useState<any>(initMode);
 
   return <div className='h-full flex flex-col justify-stretch'>
     <PreviewBlockToolbar
+      setMode={setMode}
       mode={mode}
       hash={hash}
     ></PreviewBlockToolbar>

@@ -25,12 +25,11 @@ export default function PreviewBlock({ groupIndex, codeList, className = '', chi
         if (groupIndex <= lazyRenderMax) {
           return <CodeBlock language={item.language} code={item.code}></CodeBlock>
         } else {
-          return <RenderIfVisible defaultHeight={ESTIMATED_ITEM_HEIGHT}>
+          return <RenderIfVisible>
             <CodeBlock language={item.language} code={item.code}></CodeBlock>
           </RenderIfVisible>
         }
       })
-
     }
   </div>;
 }

@@ -6,7 +6,7 @@ import { answerBlockStyle, groupStyles, previewBlockStyle, previewToolbarClass }
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
 
-export function appendOneGroup({ index, group, mode = MODE.tailwind, }) {
+export function updateLastGroupCodeList({ index, group, mode = MODE.tailwind, }) {
   addStyle(group, groupStyles);
 
   const previewCodeBlock = document.createElement('div');

@@ -1,10 +1,5 @@
 import { MODE } from '../config';
 
-
-export function detectCodeLanguage() {
-  return
-}
-
 export function getCodeListOfBlock(block, mode = MODE.tailwind) {
   let codeTextList = [];
   const items = [];
@@ -33,8 +28,6 @@ export function getCodeListOfBlock(block, mode = MODE.tailwind) {
       })
     ];
   }
-
-  console.log('blockCodeList', blockCodeList);
 
   return blockCodeList;
 }

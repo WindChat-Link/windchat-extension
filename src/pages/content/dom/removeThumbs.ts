@@ -1,11 +1,14 @@
-import { log, thumbBlocksSelector, thumbBlocksSelectorAdded } from '../initLoad';
 import { addClass, addStyle, hasClass } from '../utils';
 
-export function removeThumbs() {
-  log('\n\n%c--------- removeThumbs ---------', 'background:yellow; color:blue; font-weight:600;');
+/** 
+ * Thumb
+ */
 
+export const thumbBlocksSelector = '.flex.justify-between .text-gray-400.self-end';
+export const thumbBlocksSelectorAdded = 'thumbBlocksSelectorAdded';
+
+export function removeThumbs() {
   const blocks = document.querySelectorAll(thumbBlocksSelector);
-  log('removeThumbs blocks.length', blocks.length);
 
   for (const block of blocks) {
     if (hasClass(block, thumbBlocksSelectorAdded)) continue;

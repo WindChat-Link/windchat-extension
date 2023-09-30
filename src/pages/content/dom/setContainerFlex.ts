@@ -1,5 +1,11 @@
-import { log, containerSelector } from '../initLoad';
 import { addClass, addStyle, hasClass } from '../utils';
+import { log } from './isGroupActive';
+
+/** 
+ * Container
+ */
+export const containerSelector = '.flex.flex-col.items-center.text-sm'
+
 
 export const containerStyles = {
   minWidth: 'calc(100vw - 270px)',
@@ -14,7 +20,6 @@ export function setContainerFlex() {
   log('\n\n%c--------- setContainerFlex ---------', 'background:yellow; color:blue; font-weight:600;');
 
   const ele = document.querySelector(containerSelector) as HTMLElement;
-  log('setContainerFlex ele', ele);
 
   if (ele) {
     if (hasClass(ele, containerParentStylesAdded)) return;
