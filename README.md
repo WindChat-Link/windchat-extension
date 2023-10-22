@@ -38,8 +38,17 @@ https://www.youtube.com/watch?v=9ma5KFia_0o
 
 ## Roadmap
 
-[] Auto detect Tailwindcss or Reactjs code
+[x] Auto detect Tailwindcss or Reactjs code
 
-[] Tailwindcss fullscreen preview and edit (redirect to https://play.tailwindcss.com/ temporarily)
+[x] Tailwindcss fullscreen preview and edit
 
-[] Prompt guide
+[x] Prompt Library
+
+[x] Support React with TailwindCSS
+
+[x] Support React with styled-components
+
+[x] Support React with Material UI component 
+
+
+[ ] Support React with Ant Design component 
