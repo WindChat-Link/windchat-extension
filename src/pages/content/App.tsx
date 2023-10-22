@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useInitStorage } from '../../utils/pstore';
-import { observeAll } from './dom/observeAll';
+import { observeAll } from './components/observeAll';
 
 export default function App() {
   const storageInited = useInitStorage();

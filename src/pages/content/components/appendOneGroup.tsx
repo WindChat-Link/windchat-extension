@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import PreviewBlock from '../components/PreviewBlock';
+import PreviewBlock from './PreviewBlock';
 import { MODE } from '../config';
 import { addClass, addStyle } from '../utils';
 import { answerBlockStyle, groupStyles, previewBlockStyle, previewToolbarClass } from './appendPreviewBlocks';
