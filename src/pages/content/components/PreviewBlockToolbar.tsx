@@ -17,6 +17,13 @@ export function PreviewBlockToolbar({ mode, setMode, hash }) {
     style={{ minWidth: editPath }}
     className='overflpw-x-auto sticky top-0 shadow bg-white rounded gap-4 py-2 flex items-center px-3 h-[40px] mb-1'>
 
+
+    <ModeSwitch
+      mode={mode}
+      setMode={setMode}
+    ></ModeSwitch>
+
+
     <a href={previewPath} target="_blank"
       className={cn(`flex items-center`,)}
     >
@@ -41,10 +48,18 @@ export function PreviewBlockToolbar({ mode, setMode, hash }) {
     </a>
     }
 
-    <ModeSwitch
-      mode={mode}
-      setMode={setMode}
-    ></ModeSwitch>
 
+    <a href={`https://www.windchat.link/prompt`} target="_blank"
+      className={cn(`flex items-center`,)}
+    >
+      <Button type='outline'
+        className={cn(`bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-sm text-white font-semibold flex items-center gap-1 border-indigo-500`,)}>
+        Prompt Library
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+          className=" w-4 h-4 ">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+        </svg>
+      </Button>
+    </a>
   </div>;
 }
