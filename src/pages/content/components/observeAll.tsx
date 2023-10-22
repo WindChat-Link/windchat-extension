@@ -17,9 +17,9 @@ export function observeAll() {
       const type = mutation.type;
       const tagName = target.tagName;
 
-      // console.log('target', target);
-      // console.log('target.classList', target.classList);
-      // console.log('tagName', tagName);
+      console.log('target', target);
+      console.log('target.classList', target.classList);
+      console.log('tagName', tagName);
 
       // @ts-ignore
       if (hasClass(target, 'hljs') ||
@@ -42,6 +42,16 @@ export function observeAll() {
 
       if (tagName === 'MAIN' && hasClass(target, 'relative h-full w-full transition-width overflow-auto flex-1')) {
         groupsHandler();
+        appendSwitch();
+      }
+
+      /** 
+      * comment: sidebar segment title
+      */
+      if (hasClass(target, 'flex flex-col gap-2 text-sm')
+        || hasClass(target, 'flex flex-col flex-grow w-full')
+        || hasClass(target, 'relative flex h-full flex-1')
+      ) {
         appendSwitch();
       }
     });
@@ -73,7 +83,10 @@ export async function groupsHandler0() {
 }
 
 export const lastChatHandler = throttle(() => lastChatHandler0(), 200, { trailing: true, leading: true })
-function lastChatHandler0() {
+async function lastChatHandler0() {
+  const active = await isGroupActive();
+  if (!active) return;
+
   removeAvatar();
   removeThumbs();
 
@@ -87,6 +100,7 @@ export function checkPreviewBlockInited() {
 }
 
 export function applyChatGroupsChanges() {
+  console.log('\n\n%c--------- applyChatGroupsChanges ---------', 'background:yellow; color:blue; font-weight:600;');
   const loaded = checkPreviewBlockInited()
   if (!loaded) {
     removeAvatar();

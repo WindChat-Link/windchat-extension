@@ -1,11 +1,5 @@
 
-const DEBUG = false;
-
-export function log(...v) {
-  if (DEBUG) {
-    console.log(...v);
-  }
-}
+export const DEBUG = false;
 
 export function getGroupId() {
   const pathname = window.location.pathname;
@@ -20,12 +14,13 @@ export function getGroupId() {
 
 export async function isGroupActive() {
   const id = getGroupId();
-  // if (DEBUG_ALL_ENABLE) return true;
   if (!id) return false;
+  if (id === 'home') return false;
 
   const data = await chrome.storage.local.get(id);
 
   const active = !!data?.[id];
+  console.log('active', active);
   return active;
 }
 
