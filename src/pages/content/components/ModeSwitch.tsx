@@ -12,7 +12,7 @@ export default function ModeSwitch({ mode, setMode, className = '', children = n
       border-l border-t border-b
         hover:shadow text-white px-3 `,
         mode === MODE.tailwind ? 'bg-indigo-600' : '',
-      )}>tailwindcss</button>
+      )}>TailwindCSS</button>
     <button
       onClick={() => setMode(MODE.react)}
       style={{ height: '24px' }}
@@ -22,6 +22,6 @@ export default function ModeSwitch({ mode, setMode, className = '', children = n
       border-indigo-600
        text-indigo-600 hover:shadow  px-3 `,
         mode === MODE.react ? 'bg-indigo-600' : '',
-      )}>React</button>
+      )}>React (Beta)</button>
   </div>;
 }
