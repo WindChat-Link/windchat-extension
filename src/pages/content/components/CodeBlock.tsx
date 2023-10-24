@@ -9,11 +9,14 @@ import { useState } from 'react';
 
 export function CodeBlock({ language, code }) {
   let code2 = commentOutImports(code)
+  console.log('code2', code2);
   const hash = code ? hashCode(code2) : ''
   const initMode = getModeFromLanguage(language)
   const [mode, setMode] = useState<any>(initMode);
 
   return <div className='h-full flex flex-col justify-stretch'>
+    <div className='whitespace-pre-wrap'>mode {JSON.stringify(mode, null, 2)}</div>
+    <pre className='whitespace-pre-wrap'>code2 {JSON.stringify(code2, null, 2)}</pre>
     <PreviewBlockToolbar
       setMode={setMode}
       mode={mode}

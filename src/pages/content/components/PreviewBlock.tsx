@@ -35,6 +35,8 @@ export default function PreviewBlock({ groupIndex, codeList: codeList0, classNam
     listenStorage()
   }, []);
 
+  console.log('codeList', codeList);
+
   return <div
     className={cn(`min-h-[200px] max-h-[60vh] w-full`,)}
   >

@@ -15,9 +15,7 @@ export function PreviewBlockToolbar({ mode, setMode, hash }) {
 
   return <div
     style={{ minWidth: editPath }}
-    className='overflpw-x-auto sticky top-0 shadow bg-white rounded gap-4 py-2 flex items-center px-3 h-[40px] mb-1'>
-
-
+    className='min-w-[800px] overflpw-x-auto sticky top-0 shadow bg-white rounded gap-4 py-2 flex items-center px-3 h-[40px] mb-1'>
     <ModeSwitch
       mode={mode}
       setMode={setMode}
