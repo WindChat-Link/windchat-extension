@@ -49,7 +49,7 @@ export function appendPreviewBlocksLast({ mode = MODE.tailwind } = {}) {
     }
   } else {
     appendOneGroup({
-      index: allGroups.length,
+      index: allGroups.length - 1,
       group, mode,
     })
   }
