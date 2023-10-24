@@ -21,11 +21,11 @@
     "@twind/preset-autoprefix": "^1.0.7",
     "@twind/preset-tailwind": "^1.1.4",
     "antd": "^5.4.7",
-    "construct-style-sheets-polyfill": "^3.1.0",
     "axios": "^1.4.0",
     "chokidar": "^3.5.3",
     "clsx": "^2.0.0",
     "common-tags": "^1.8.2",
+    "construct-style-sheets-polyfill": "^3.1.0",
     "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
@@ -36,7 +36,8 @@
     "react-router-dom": "^6.12.1",
     "store": "^2.0.12",
     "tailwind-merge": "^1.14.0",
-    "webextension-polyfill": "^0.10.0"
+    "webextension-polyfill": "^0.10.0",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
