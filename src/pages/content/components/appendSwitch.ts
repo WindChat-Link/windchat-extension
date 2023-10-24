@@ -1,6 +1,7 @@
 import { throttle } from 'lodash';
 import { addStyle, hasClass } from '../utils';
-import { applyChatGroupsChanges, groupsHandler } from './observeAll';
+import { groupsHandler } from './observeAll';
+import { applyChatGroupsChanges } from './applyChatGroupsChanges';
 import { isGroupActive, getGroupId, setActiveGroupId } from './isGroupActive';
 import { log } from './log';
 import { isVip } from './isVip';

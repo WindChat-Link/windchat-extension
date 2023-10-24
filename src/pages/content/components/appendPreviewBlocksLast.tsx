@@ -6,14 +6,18 @@ import { answerBlockStyle, getGroups, previewBlockStyle, previewToolbarClass } f
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
 import _ from 'lodash';
+import { getGroupId } from './isGroupActive';
 
 
 // 如果直接删除group 再创建，会导致高度变化而闪烁
 export function appendPreviewBlocksLast({ mode = MODE.tailwind } = {}) {
-  let chatGroups = Array.from(getGroups())
+  console.log('\n\n%c--------- appendPreviewBlocksLast ---------', 'background:yellow; color:blue; font-weight:600;');
+  const groupId = getGroupId();
+  const allGroups = Array.from(getGroups())
+  const lastIndex = allGroups.length - 1;
 
   // comment: 只处理最后一组
-  chatGroups = chatGroups.slice(-1)
+  const chatGroups = allGroups.slice(-1)
   const group = _.last(chatGroups)
 
   const existPreviewBlock = group.querySelector(`.${previewBlockAddedClass}`)
@@ -31,17 +35,21 @@ export function appendPreviewBlocksLast({ mode = MODE.tailwind } = {}) {
       }
       return;
     } else {
+      chrome.storage.local.set({
+        [`${groupId}_${lastIndex}`]: codeList
+      });
+
       // react 模式暂时删除重建
       // codeBlocks数量不一致，删除重建
-      group.removeChild(existPreviewBlock);
-      appendOneGroup({
-        index: chatGroups.length,
-        group, mode,
-      })
+      // group.removeChild(existPreviewBlock);
+      // appendOneGroup({
+      //   index: chatGroups.length,
+      //   group, mode,
+      // })
     }
   } else {
     appendOneGroup({
-      index: chatGroups.length,
+      index: allGroups.length,
       group, mode,
     })
   }

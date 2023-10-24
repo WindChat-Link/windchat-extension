@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { AppPrefix } from '../../../config';
 import { MODE } from '../config';
 import { addClass } from '../utils';
@@ -53,43 +52,3 @@ export const previewBlockStyle = {
   top: '61px',
   alignSelf: 'stretch',
 }
-
-const maxGroups = 5;
-
-export const appendPreviewBlocks = _.throttle(appendPreviewBlocks0, 1000, { leading: true, trailing: true });
-
-export async function appendPreviewBlocks0({ mode = MODE.tailwind } = {}) {
-  let chatGroups = Array.from(getGroups()).reverse();
-
-  const vip = await isVip();
-
-  for (let index = 0; index < chatGroups.length; index++) {
-    const group = chatGroups[index];
-    // @ts-ignore
-    const groupLoaded = hasClass(group, groupsPreviewBlocksLoadedClassName)
-
-    if (groupLoaded) {
-      continue;
-    }
-    addClass(group, groupsPreviewBlocksLoadedClassName)
-
-    if (index < maxGroups || vip) {
-      appendOneGroup({
-        index,
-        group, mode,
-      })
-    } else {
-      if (index === maxGroups) {
-        appendOneGroup({
-          index,
-          group, mode,
-          buy: true
-        })
-      } else if (index > maxGroups) return;
-    }
-  }
-
-}
-
-
-

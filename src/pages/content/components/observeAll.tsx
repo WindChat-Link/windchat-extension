@@ -1,14 +1,13 @@
 import { throttle } from 'lodash';
 import { isGroupActive } from './isGroupActive';
 import { hasClass } from '../utils';
-import { appendPreviewBlocks } from './appendPreviewBlocks';
 import { appendSwitch } from './appendSwitch';
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { removeAvatar } from './removeAvatar';
 import { removeThumbs } from './removeThumbs';
 import { setChatBlockStyle } from './setChatBlockStyle';
-import { setContainerFlex } from './setContainerFlex';
 import { appendPreviewBlocksLast } from './appendPreviewBlocksLast';
+import { applyChatGroupsChanges } from './applyChatGroupsChanges';
 
 export function observeAll() {
   const observer = new MutationObserver(async (mutationsList, observer) => {
@@ -99,14 +98,4 @@ export function checkPreviewBlockInited() {
   return !!found
 }
 
-export function applyChatGroupsChanges() {
-  console.log('\n\n%c--------- applyChatGroupsChanges ---------', 'background:yellow; color:blue; font-weight:600;');
-  const loaded = checkPreviewBlockInited()
-  if (!loaded) {
-    removeAvatar();
-    removeThumbs();
-    setContainerFlex();
-    setChatBlockStyle();
-    appendPreviewBlocks()
-  }
-}
+
