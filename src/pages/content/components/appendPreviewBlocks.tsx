@@ -1,12 +1,16 @@
+import _ from 'lodash';
+import { AppPrefix } from '../../../config';
 import { MODE } from '../config';
-import { hasClass } from '../utils';
+import { addClass } from '../utils';
+import { hasClass } from '../utils/utils';
 import { appendOneGroup } from './appendOneGroup';
-import { previewBlockAddedClass } from './codeBlockConfig';
+import { isVip } from './isVip';
 
 /** 
  * Group
  */
 const answerGroupsSelector = '.group.w-full.bg-gray-50';
+export const groupsPreviewBlocksLoadedClassName = `${AppPrefix}-group-blocks-loaded`;
 
 export function getGroups() {
   const chatGroups = document.querySelectorAll(answerGroupsSelector) as NodeListOf<HTMLElement>;
@@ -28,10 +32,10 @@ export const groupStyles = {
 /** 
  * Preview Block
  */
-export const previewBlockClass = 'thp-preview-block';
-export const groupFindBlocksClassName = 'text-base'
-export const iframeBlockClass = 'thp-iframe-block';
-export const previewToolbarClass = 'thp-preview-toolbar';
+export const previewBlockClass = `${AppPrefix}-preview-block`;
+export const groupFindBlocksClassName = `text-base`
+export const iframeBlockClass = `${AppPrefix}-iframe-block`;
+export const previewToolbarClass = `${AppPrefix}-preview-toolbar`;
 
 export const answerBlockStyle = {
   marginRight: 0,
@@ -50,24 +54,41 @@ export const previewBlockStyle = {
   alignSelf: 'stretch',
 }
 
-export function appendPreviewBlocks({ mode = MODE.tailwind } = {}) {
-  console.log('\n\n%c--------- appendPreviewBlocks ---------', 'background:yellow; color:blue; font-weight:600;');
+const maxGroups = 5;
 
-  let chatGroups = Array.from(getGroups())
+export const appendPreviewBlocks = _.throttle(appendPreviewBlocks0, 1000, { leading: true, trailing: true });
+
+export async function appendPreviewBlocks0({ mode = MODE.tailwind } = {}) {
+  let chatGroups = Array.from(getGroups()).reverse();
+
+  const vip = await isVip();
 
   for (let index = 0; index < chatGroups.length; index++) {
     const group = chatGroups[index];
-    const groupLoaded = hasClass(group, previewBlockAddedClass)
+    // @ts-ignore
+    const groupLoaded = hasClass(group, groupsPreviewBlocksLoadedClassName)
 
     if (groupLoaded) {
       continue;
     }
+    addClass(group, groupsPreviewBlocksLoadedClassName)
 
-    appendOneGroup({
-      index,
-      group, mode,
-    })
+    if (index < maxGroups || vip) {
+      appendOneGroup({
+        index,
+        group, mode,
+      })
+    } else {
+      if (index === maxGroups) {
+        appendOneGroup({
+          index,
+          group, mode,
+          buy: true
+        })
+      } else if (index > maxGroups) return;
+    }
   }
+
 }
 
 
