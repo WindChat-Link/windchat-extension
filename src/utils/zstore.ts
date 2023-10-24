@@ -82,9 +82,9 @@ function needSaveStorage(key) {
   return (StorageKeys as StoreKeyType[]).includes(key)
 }
 
-export const useBearStore = create(async (set) => {
+export const useBearStore = create((set) => {
   if (!storageInited) {
-    await initStorage()
+    initStorage()
   }
 
   return {
@@ -126,6 +126,8 @@ export function useStoreStates<K extends keyof typeof AllStateDefault>(key: K): 
 ] {
   const setKey = `set${key[0].toUpperCase()}${key.slice(1)}` as const;
   const updateKey = `update${key[0].toUpperCase()}${key.slice(1)}` as const;
+  console.log('storageInited', storageInited);
+  while (!storageInited) { }
 
   const [keyValue, setKeyValue, updateKeyValue] = useBearStore((state: any) => {
     return [
