@@ -81,6 +81,7 @@ export async function groupsHandler0() {
   return
 }
 
+let lastChatHandlerTimer;
 export const lastChatHandler = throttle(() => lastChatHandler0(), 200, { trailing: true, leading: true })
 async function lastChatHandler0() {
   const active = await isGroupActive();
@@ -91,6 +92,12 @@ async function lastChatHandler0() {
 
   setChatBlockStyle();
   appendPreviewBlocksLast()
+  if (lastChatHandlerTimer) {
+    clearTimeout(lastChatHandlerTimer);
+  }
+  lastChatHandlerTimer = setTimeout(() => {
+    appendPreviewBlocksLast()
+  }, 1000);
 }
 
 export function checkPreviewBlockInited() {
