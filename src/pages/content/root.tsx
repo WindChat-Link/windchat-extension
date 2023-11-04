@@ -1,13 +1,27 @@
-import { createRoot } from 'react-dom/client';
-import refreshOnUpdate from 'virtual:reload-on-update-in-view';
-import App from './App';
+import { createRoot } from "react-dom/client";
+import App2 from "@root/src/pages/content/App";
+import refreshOnUpdate from "virtual:reload-on-update-in-view";
+import { attachTwindStyle } from "@src/shared/style/twind";
 
-refreshOnUpdate('pages/content');
+refreshOnUpdate("pages/content");
 
-const root = document.createElement('div');
-root.id = 'windchat-extension';
+const root = document.createElement("div");
+root.id = "windchat-chart-previewer-extension-root";
 
 document.body.append(root);
-createRoot(root).render(
-  <App />
-);
+
+const rootIntoShadow = document.createElement("div");
+rootIntoShadow.id = "shadow-root";
+
+export const shadowRoot = root.attachShadow({ mode: "open" });
+shadowRoot.appendChild(rootIntoShadow);
+
+/**
+ * https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/pull/174
+ *
+ * In the firefox environment, the adoptedStyleSheets bug may prevent contentStyle from being applied properly.
+ * Please refer to the PR link above and go back to the contentStyle.css implementation, or raise a PR if you have a better way to improve it.
+ */
+attachTwindStyle(rootIntoShadow, shadowRoot);
+
+createRoot(rootIntoShadow).render(<App2 />);

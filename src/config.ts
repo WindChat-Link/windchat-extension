@@ -16,3 +16,5 @@ export const SCOPES = [
   "https://www.googleapis.com/auth/userinfo.profile"
 ];
 
+
+export const AppPrefix = `windchat-chart`

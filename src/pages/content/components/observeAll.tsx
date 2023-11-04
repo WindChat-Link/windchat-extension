@@ -1,14 +1,13 @@
 import { throttle } from 'lodash';
 import { isGroupActive } from './isGroupActive';
 import { hasClass } from '../utils';
-import { appendPreviewBlocks } from './appendPreviewBlocks';
 import { appendSwitch } from './appendSwitch';
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { removeAvatar } from './removeAvatar';
 import { removeThumbs } from './removeThumbs';
 import { setChatBlockStyle } from './setChatBlockStyle';
-import { setContainerFlex } from './setContainerFlex';
 import { appendPreviewBlocksLast } from './appendPreviewBlocksLast';
+import { applyChatGroupsChanges } from './applyChatGroupsChanges';
 
 export function observeAll() {
   const observer = new MutationObserver(async (mutationsList, observer) => {
@@ -17,9 +16,9 @@ export function observeAll() {
       const type = mutation.type;
       const tagName = target.tagName;
 
-      // console.log('target', target);
-      // console.log('target.classList', target.classList);
-      // console.log('tagName', tagName);
+      console.log('target', target);
+      console.log('target.classList', target.classList);
+      console.log('tagName', tagName);
 
       // @ts-ignore
       if (hasClass(target, 'hljs') ||
@@ -42,6 +41,16 @@ export function observeAll() {
 
       if (tagName === 'MAIN' && hasClass(target, 'relative h-full w-full transition-width overflow-auto flex-1')) {
         groupsHandler();
+        appendSwitch();
+      }
+
+      /** 
+      * comment: sidebar segment title
+      */
+      if (hasClass(target, 'flex flex-col gap-2 text-sm')
+        || hasClass(target, 'flex flex-col flex-grow w-full')
+        || hasClass(target, 'relative flex h-full flex-1')
+      ) {
         appendSwitch();
       }
     });
@@ -72,13 +81,23 @@ export async function groupsHandler0() {
   return
 }
 
+let lastChatHandlerTimer;
 export const lastChatHandler = throttle(() => lastChatHandler0(), 200, { trailing: true, leading: true })
-function lastChatHandler0() {
+async function lastChatHandler0() {
+  const active = await isGroupActive();
+  if (!active) return;
+
   removeAvatar();
   removeThumbs();
 
   setChatBlockStyle();
   appendPreviewBlocksLast()
+  if (lastChatHandlerTimer) {
+    clearTimeout(lastChatHandlerTimer);
+  }
+  lastChatHandlerTimer = setTimeout(() => {
+    appendPreviewBlocksLast()
+  }, 1000);
 }
 
 export function checkPreviewBlockInited() {
@@ -86,13 +105,4 @@ export function checkPreviewBlockInited() {
   return !!found
 }
 
-export function applyChatGroupsChanges() {
-  const loaded = checkPreviewBlockInited()
-  if (!loaded) {
-    removeAvatar();
-    removeThumbs();
-    setContainerFlex();
-    setChatBlockStyle();
-    appendPreviewBlocks()
-  }
-}
+

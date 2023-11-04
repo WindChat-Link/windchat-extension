@@ -9,10 +9,11 @@ import manifest from './manifest';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 
-const root = resolve(__dirname, 'src');
-const pagesDir = resolve(root, 'pages');
-const assetsDir = resolve(root, 'assets');
-const stylesDir = resolve(root, 'src/styles');
+const rootDir = resolve(__dirname);
+const srcDir = resolve(__dirname, 'src');
+const pagesDir = resolve(srcDir, 'pages');
+const assetsDir = resolve(srcDir, 'assets');
+const stylesDir = resolve(srcDir, 'src/styles');
 const outDir = resolve(__dirname, 'dist');
 const publicDir = resolve(__dirname, 'public');
 
@@ -28,11 +29,12 @@ export default defineConfig({
   // },
   resolve: {
     alias: {
-      '@': root,
-      '@src': root,
+      '@': srcDir,
+      '@src': srcDir,
       '@assets': assetsDir,
       '@styles': stylesDir,
       '@pages': pagesDir,
+      "@root": rootDir,
     },
   },
   plugins: [

@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
 import { useInitStorage } from '../../utils/pstore';
-import { observeAll } from './dom/observeAll';
+import { observeAll } from './components/observeAll';
+import { useStoreStates, StoreKeysMap } from '../../utils/zstore';
 
 export default function App() {
-  const storageInited = useInitStorage();
+  const [tabCodeList, setTabCodeList, updateTabCodeList] = useStoreStates(StoreKeysMap.tabCodeList);
+  console.log('tabCodeList', tabCodeList);
 
   useEffect(() => {
     observeAll()
+    setTimeout(() => {
+      setTabCodeList({ a: 'a' })
+    }, 1000);
   }, []);
-
-  if (!storageInited) return null
 
   return <div className=''>
   </div>;
