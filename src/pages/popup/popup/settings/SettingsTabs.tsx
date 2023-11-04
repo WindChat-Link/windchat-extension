@@ -14,7 +14,7 @@ export default function SettingsTabs() {
   const [listTimekey, setListTimekey] = useState<any>(Date.now());
 
   async function onSuccess(data) {
-    message.success('Activation successful');
+    message.success('Activation successful, please refresh ChatGPT page');
     setReachLimit(false)
     setListTimekey(Date.now());
   }
