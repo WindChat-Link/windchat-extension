@@ -1,4 +1,4 @@
-import { appendPreviewGroups } from './appendPreviewGroups';
+import { appendGroups } from './appendGroups';
 import { removeAvatar } from './removeAvatar';
 import { removeThumbs } from './removeThumbs';
 import { setChatBlockStyle } from './setChatBlockStyle';
@@ -16,6 +16,6 @@ export function applyChatGroupsChanges() {
     removeThumbs();
     setContainerFlex();
     setChatBlockStyle();
-    appendPreviewGroups();
+    appendGroups();
   }
 }

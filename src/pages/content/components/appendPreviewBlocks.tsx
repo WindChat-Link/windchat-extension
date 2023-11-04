@@ -11,7 +11,7 @@ import { isVip } from './isVip';
 const answerGroupsSelector = '.group.w-full.bg-gray-50';
 export const groupsPreviewBlocksLoadedClassName = `${AppPrefix}-group-blocks-loaded`;
 
-export function getGroups() {
+export function getAnswerGroups() {
   const chatGroups = document.querySelectorAll(answerGroupsSelector) as NodeListOf<HTMLElement>;
   return chatGroups;
 }

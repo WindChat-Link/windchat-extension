@@ -2,7 +2,7 @@ import { codeBlockTailwindClassName } from '../components/CodeBlockTailwind';
 import { MODE } from '../config';
 import { addClass, addStyle, hasClass } from '../utils';
 import { appendOneGroup } from './appendOneGroup';
-import { answerBlockStyle, getGroups, previewBlockStyle, previewToolbarClass } from './appendPreviewBlocks';
+import { answerBlockStyle, getAnswerGroups, previewBlockStyle, previewToolbarClass } from './appendPreviewBlocks';
 import { previewBlockAddedClass } from './codeBlockConfig';
 import { getCodeListOfBlock } from './getCodeListOfBlock';
 import _ from 'lodash';
@@ -13,7 +13,7 @@ import { getGroupId } from './isGroupActive';
 export function appendPreviewBlocksLast({ mode = MODE.tailwind } = {}) {
   console.log('\n\n%c--------- appendPreviewBlocksLast ---------', 'background:yellow; color:blue; font-weight:600;');
   const groupId = getGroupId();
-  const allGroups = Array.from(getGroups())
+  const allGroups = Array.from(getAnswerGroups())
   const lastIndex = allGroups.length - 1;
 
   // comment: 只处理最后一组

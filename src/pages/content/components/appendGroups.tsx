@@ -2,18 +2,18 @@ import _ from 'lodash';
 import { MODE } from '../config';
 import { addClass, hasClass } from '../utils';
 import { appendOneGroup } from './appendOneGroup';
-import { getGroups, groupsPreviewBlocksLoadedClassName } from './appendPreviewBlocks';
+import { getAnswerGroups, groupsPreviewBlocksLoadedClassName } from './appendPreviewBlocks';
 import { isVip } from './isVip';
 
 const maxGroups = 5;
 
-export const appendPreviewGroups = _.throttle(appendPreviewGroups0, 1000, { leading: true, trailing: true });
+export const appendGroups = _.throttle(appendGroups0, 1000, { leading: true, trailing: true });
 
-export async function appendPreviewGroups0({ mode = MODE.tailwind } = {}) {
+export async function appendGroups0({ mode = MODE.tailwind } = {}) {
   console.log('\n\n%c--------- appendPreviewGroups0 ---------', 'background:yellow; color:blue; font-weight:600;');
   console.log('mode', mode);
 
-  let chatGroups = Array.from(getGroups());
+  let chatGroups = Array.from(getAnswerGroups());
   console.log('chatGroups', chatGroups);
   const totalCount = chatGroups.length;
   console.log('totalCount', totalCount);
