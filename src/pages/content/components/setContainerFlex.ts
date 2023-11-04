@@ -1,5 +1,5 @@
 import { addClass, addStyle, hasClass } from '../utils';
-import { log } from './isGroupActive';
+import { log } from './log';
 
 /** 
  * Container
