@@ -40,7 +40,6 @@ export default function PreviewBlock({ groupIndex, codeList: codeList0, classNam
   return <div
     className={cn(`min-h-[200px] max-h-[60vh] w-full`,)}
   >
-    <div className='whitespace-pre-wrap'>groupIndex {JSON.stringify(groupIndex, null, 2)}</div>
     {
       codeList.map((item) => {
         if (groupIndex <= lazyRenderMax) {
